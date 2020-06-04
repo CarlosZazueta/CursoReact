@@ -1,10 +1,8 @@
 import React from 'react';
 
-function Header() {
-    const text = 'Hola';
-
+function Header({titulo}) {
     return (
-        <h1>{text} desde el HeaderComponent</h1>
+    <h1 className="encabezado"> {titulo} </h1>
     )
 }
 
