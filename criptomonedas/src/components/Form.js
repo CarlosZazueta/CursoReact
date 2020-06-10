@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-// Additiona libs
+// Additiona libs/components
 import styled from '@emotion/styled';
 import Axios from 'axios';
 
@@ -11,7 +11,7 @@ import Error from './Error';
 import useMoneda from '../hooks/useMoneda';
 import useCriptomoneda from '../hooks/useCriptomoneda';
 
-
+//#region Styled Components
 const SubmitButton = styled.button`
     margin-top: 20px;
     font-weight: bold;
@@ -30,10 +30,12 @@ const SubmitButton = styled.button`
         cursor: pointer;
     }
 `;
+//#endregion
 
-const Form = () => {
-    // State listado de criptomonedas
-    const [cryptoList, setCrypto] = useState([]);
+//#region Form Component
+const Form = ({setCoin, setCrypto}) => {
+    //#region States
+    const [cryptoList, setCryptoList] = useState([]);
     const [error, setError] = useState(false);
 
     const MONEDAS = [
@@ -42,23 +44,27 @@ const Form = () => {
         {code: 'EUR', name: 'Euro'},
         {code: 'GBP', name: 'Libra Esterlina'}
     ];
+    //#endregion
 
-    // Custom hook
+    //#region CustomHooks
     const [coin, SelectCoin] = useMoneda('Elige tu Moneda', '', MONEDAS);
     const [crypto, SelectCrypto] = useCriptomoneda('Elige tu criptomoneda', '', cryptoList);
+    //#endregion
 
-    // Ejecutar llamado a la Api
+    //#region Ejecutar llamado a la Api
     useEffect(() => {
         const apiQuery = async () => {
             const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
             const result = await Axios.get(url);
 
-            setCrypto(result.data.Data);
+            setCryptoList(result.data.Data);
         }
 
         apiQuery();
     }, []);
+    //#endregion
 
+    //#region HandleSubmit
     const handleSubmit = e => {
         e.preventDefault();
 
@@ -70,8 +76,13 @@ const Form = () => {
 
         // Pasar datos al componente principal
         setError(false);
-    }
 
+        // Valores que obtenemos de los custom hooks
+        setCoin(coin);
+        setCrypto(crypto);
+    }
+    //#endregion
+    
     return (
         <form
             onSubmit={handleSubmit}
@@ -85,5 +96,5 @@ const Form = () => {
         </form>
     );
 }
- 
+//#endregion
 export default Form;

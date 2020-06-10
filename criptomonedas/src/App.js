@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+// Additiona libs
 import styled from '@emotion/styled';
+import Axios from 'axios';
 
+// Components
 import Form from './components/Form';
+import Quotation from './components/Quotation';
 import image from './cryptomonedas.png';
+import Spinner from './components/Spinner';
 
+//#region Styled Components
 const Container = styled.div`
   max-width: 900px;
   margin: 0 auto;
@@ -37,8 +44,47 @@ const Heading = styled.h1`
     display: block;
   }
 `;
+//#endregion
 
 function App() {
+
+  //#region States(S)
+  const [coin, setCoin] = useState('');
+  const [crypto, setCrypto] = useState('');
+  const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(false);
+  //#endregion
+
+  //#region Ejecutar llamado a la Api
+  useEffect(() => {
+    
+    const quoteCrytocurrency = async () => {
+      // Evita la ejecicion la primera vez
+      if (coin === '') return;
+
+      // Consultar la api para obtener la cotizacion
+      const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${crypto}&tsyms=${coin}`;
+      const result = await Axios.get(url);
+
+      // Mostrar spinner
+      setLoading(true);
+
+      // Ocultar el spinner y mostrar el resultado
+      setTimeout(() => {
+        setLoading(false);
+        setResult(result.data.DISPLAY[crypto][coin]);
+      }, 3000);
+    }
+
+    quoteCrytocurrency();
+    
+  }, [coin, crypto]);
+  //#endregion
+
+  //#region Spinner
+  const component = (loading) ? <Spinner /> : <Quotation result={result}/>;
+  //#endregion
+
   return (
     <Container>
       <div>
@@ -49,7 +95,11 @@ function App() {
       </div>
       <div>
         <Heading>Cotiza Criptomonedas al Instante</Heading>
-        <Form />
+        <Form 
+          setCoin={setCoin}
+          setCrypto={setCrypto}
+        />
+        {component}
       </div>
     </Container>
   );
