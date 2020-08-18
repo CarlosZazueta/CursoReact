@@ -1,10 +1,12 @@
 import React, {useContext, useState} from 'react';
 import {CategoriasContext} from '../context/CategoriasContext';
+import {RecetasContext} from '../context/RecetasContext';
 
 const Formulario = () => {
     
     // Context
     const { categorias } = useContext(CategoriasContext);
+    const { buscarRecetas, setConsultar } = useContext(RecetasContext);
 
     //States
     const [busqueda, setBusqueda] = useState({
@@ -22,7 +24,14 @@ const Formulario = () => {
     //#endregion
 
     return ( 
-        <form className="col-12">
+        <form 
+            className="col-12"
+            onSubmit={e => {
+                e.preventDefault();
+                buscarRecetas(busqueda);
+                setConsultar(true);
+            }}
+        >
             <fieldset className="text-center">
                 <legend> Busca bebidas por categoría o ingrediente </legend>
             </fieldset>
@@ -42,6 +51,7 @@ const Formulario = () => {
                         className="form-control"
                         name="categoria"
                         onChange={obtenerDatosReceta}
+                        required
                     >
                         <option value="">-- Selecciona la categoría --</option>
                         {
