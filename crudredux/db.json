@@ -34,6 +34,36 @@
       "nombre": "Atun",
       "precio": 350,
       "id": 7
+    },
+    {
+      "nombre": "jeans",
+      "precio": 200,
+      "id": 8
+    },
+    {
+      "nombre": "t-shirt",
+      "precio": 300,
+      "id": 9
+    },
+    {
+      "nombre": "t-shirt",
+      "precio": 300,
+      "id": 10
+    },
+    {
+      "nombre": "t-shirt",
+      "precio": 300,
+      "id": 11
+    },
+    {
+      "nombre": "t-shirt",
+      "precio": 300,
+      "id": 12
+    },
+    {
+      "nombre": "pescado",
+      "precio": 350,
+      "id": 13
     }
   ]
 }

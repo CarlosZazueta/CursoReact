@@ -7,7 +7,7 @@ import {nuevoProductoAction} from '../actions/productosActions';
 //#endregion
 //#endregion
 
-const NuevoProducto = (props) => {
+const NuevoProducto = ({history}) => {
     //#region STATES DEL COMPONENTE
     const [nombre, setNombre] = useState('');
     const [precio, setPrecio] = useState(0);
@@ -21,6 +21,13 @@ const NuevoProducto = (props) => {
     //#region NUEVO PRODCUTO
     // manda a llamar el action de productosAction
     const agregarNuevoProducto = (producto) => dispatch(nuevoProductoAction(producto))
+    //#endregion
+
+    //#region STATE DEL STORE
+    //Accediendo al state del store
+    const cargando = useSelector((state) => state.productos.loading);
+    const error = useSelector((state) => state.productos.error)
+    //console.log(cargando);
     //#endregion
 
     //#region SUBMIT NUEVO PRODUCTO
@@ -41,6 +48,10 @@ const NuevoProducto = (props) => {
             nombre,
             precio
         });
+        //#endregion
+
+        //#region REDIRECCIONAR
+        history.push('/');
         //#endregion
     }   
     //#endregion 
@@ -87,6 +98,8 @@ const NuevoProducto = (props) => {
                                 Agregar
                             </button>
                         </form>
+
+                        {cargando ? <p>Cargando...</p> : null}
                     </div>
                 </div>
             </div>
