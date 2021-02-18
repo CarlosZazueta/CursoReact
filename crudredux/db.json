@@ -1,38 +1,8 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
-    },
-    {
-      "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
-    },
-    {
-      "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": 3
-    },
-    {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": 4
-    },
-    {
-      "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": 5
-    },
-    {
-      "nombre": "pollo 1kg",
-      "precio": 200,
-      "id": 6
-    },
-    {
-      "nombre": "Atun",
-      "precio": 350,
+      "nombre": "Atun mazatun",
+      "precio": "100",
       "id": 7
     },
     {
@@ -41,14 +11,9 @@
       "id": 8
     },
     {
-      "nombre": "t-shirt",
-      "precio": 300,
+      "nombre": "t-shirt spiderman",
+      "precio": "500",
       "id": 9
-    },
-    {
-      "nombre": "t-shirt",
-      "precio": 300,
-      "id": 10
     },
     {
       "nombre": "t-shirt",
@@ -56,14 +21,29 @@
       "id": 11
     },
     {
-      "nombre": "t-shirt",
-      "precio": 300,
-      "id": 12
-    },
-    {
       "nombre": "pescado",
       "precio": 350,
       "id": 13
+    },
+    {
+      "nombre": "chilorio",
+      "precio": 5000,
+      "id": 14
+    },
+    {
+      "nombre": "jamon",
+      "precio": 300,
+      "id": 15
+    },
+    {
+      "nombre": "jamon2",
+      "precio": 350,
+      "id": 16
+    },
+    {
+      "nombre": "Atun2",
+      "precio": 2,
+      "id": 17
     }
   ]
 }
